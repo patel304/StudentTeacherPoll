@@ -43,7 +43,7 @@ const ChatPopover = () => {
       setNewMessage("");
     }
   };
-  const handleKickOut = (participant, index) => {
+  const handleKickOut = (participant) => {
     socket.emit("kickOut", participant);
   };
 

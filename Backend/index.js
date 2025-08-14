@@ -84,10 +84,12 @@ io.on("connection", (socket) => {
 
 	// Teacher can kick out a participant by username
 	socket.on("kickOut", (participantUsername) => {
-		const username = String(participantUsername || "");
-		if (!username) return;
-		const socketIds = usernameToSocketIds.get(username);
+		const uName = String(participantUsername || "");
+		if (!uName) return;
+		io.emit("kickedOut", uName);
+		const socketIds = usernameToSocketIds.get(uName);
 		if (!socketIds) return;
+		
 
 		for (const sid of socketIds) {
 			io.to(sid).emit("kickedOut");

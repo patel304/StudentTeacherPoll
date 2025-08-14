@@ -46,17 +46,23 @@ const StudentPollPage = () => {
     }
   };
 
+  const handleKickedOut=()=>{
+    
+  }
+
   useEffect(() => {
-    const handleKickedOut = () => {
+
+    socket.on("kickedOut", (uName)=>{
+      const username = sessionStorage.getItem("username");
+      console.log("call hua", username, uName);
+      if(uName!=username) return;
       setKickedOut(true);
       sessionStorage.removeItem("username");
-      navigate("/kicked-out");
-    };
-
-    socket.on("kickedOut", handleKickedOut);
+      navigate("/kicked-out-page");
+    });
 
     return () => {
-      socket.off("kickedOut", handleKickedOut);
+      socket.off("kickedOut");
     };
   }, [navigate]);
 
@@ -222,7 +228,7 @@ const StudentPollPage = () => {
                 <div className="d-flex  justify-content-end align-items-center">
                   <button
                     type="submit"
-                    className="btn continue-btn my-3 w-25"
+                    className="btn continue-btn my-3 w-30"
                     onClick={handleSubmit}
                   >
                     Submit

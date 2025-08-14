@@ -7,6 +7,7 @@ import TeacherPollPage from "./Pages/teacher-poll/TeacherPollPage";
 import PollHistoryPage from "./Pages/poll-history/PollHistory";
 import TeacherProtectedRoute from "./components/route-protect/TeacherProtect";
 import StudentProtectedRoute from "./components/route-protect/StudentProtect";
+import KickedOutPage from "./Pages/kick-out/kickedOutPage";
 
 function App() {
   return (
@@ -19,6 +20,14 @@ function App() {
             <TeacherProtectedRoute>
               <TeacherLandingPage />
             </TeacherProtectedRoute>
+          }
+        />
+        <Route
+          path="/kicked-out-page"
+          element={
+            <StudentProtectedRoute>
+              <KickedOutPage />
+            </StudentProtectedRoute>
           }
         />
         <Route path="/student-home-page" element={<StudentLandingPage />} />
