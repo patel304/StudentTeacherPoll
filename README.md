@@ -55,3 +55,42 @@ Make sure you have the following installed:
    ```
    http://localhost:5173/
    ```
+
+---
+
+## Backend Setup (Node.js + Express + Socket.IO)
+
+The backend lives under `server/` and provides REST endpoints and Socket.IO events used by the frontend.
+
+### Install backend dependencies
+```bash
+cd server
+npm install
+```
+
+### Run backend in development
+```bash
+npm run dev
+```
+This starts the API and Socket.IO server on `http://localhost:3000`.
+
+### Available REST endpoints
+- `POST /teacher-login` → returns `{ username: "teacher_xxxxx" }`
+- `GET /polls/:username` → returns `{ data: Poll[] }` with historical polls for that teacher
+- `GET /health` → returns server health `{ ok: true }`
+
+### Socket.IO events
+- Client → Server: `joinChat` `{ username }`
+- Client → Server: `chatMessage` `{ user, text }`
+- Client → Server: `kickOut` `username`
+- Client → Server: `createPoll` `{ question, options[{id,text,correct}], timer, teacherUsername }`
+- Client → Server: `submitAnswer` `{ username, option: text, pollId }`
+- Server → Clients: `participantsUpdate` `[username]`
+- Server → Clients: `chatMessage` `{ user, text }`
+- Server → Clients: `kickedOut`
+- Server → Clients: `pollCreated` `{ _id, question, options[{id,text,correct}], timer }`
+- Server → Clients: `pollResults` `{ [optionText]: voteCount }`
+
+### Notes
+- Data is stored in-memory for simplicity and resets on server restart.
+- Frontend uses `VITE_API_BASE_URL` and defaults to `http://localhost:3000` during development.
