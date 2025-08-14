@@ -50,6 +50,7 @@ const StudentPollPage = () => {
     const handleKickedOut = () => {
       setKickedOut(true);
       sessionStorage.removeItem("username");
+      try { socket.disconnect(); } catch {}
       navigate("/kicked-out");
     };
 

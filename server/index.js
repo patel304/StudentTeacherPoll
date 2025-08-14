@@ -79,6 +79,9 @@ io.on("connection", (socket) => {
 
 	// Broadcast chat messages
 	socket.on("chatMessage", (message) => {
+		// Basic guard against messages from kicked/unknown users
+		const fromUsername = socketIdToUsername.get(socket.id);
+		if (!fromUsername) return;
 		io.emit("chatMessage", message);
 	});
 
@@ -98,6 +101,9 @@ io.on("connection", (socket) => {
 				} catch {}
 			}
 		}
+		// Remove kicked user from participants lists
+		usernameToSocketIds.delete(username);
+		emitParticipantsUpdate();
 	});
 
 	// Create a new poll

@@ -21,7 +21,9 @@ const ChatPopover = () => {
       chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
     }
     const username = sessionStorage.getItem("username");
-    socket.emit("joinChat", { username });
+    if (username) {
+      socket.emit("joinChat", { username });
+    }
 
     socket.on("chatMessage", (message) => {
       setMessages((prevMessages) => [...prevMessages, message]);

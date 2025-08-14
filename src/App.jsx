@@ -7,6 +7,7 @@ import TeacherPollPage from "./Pages/teacher-poll/TeacherPollPage";
 import PollHistoryPage from "./Pages/poll-history/PollHistory";
 import TeacherProtectedRoute from "./components/route-protect/TeacherProtect";
 import StudentProtectedRoute from "./components/route-protect/StudentProtect";
+import KickedOutPage from "./Pages/kicked-out/KickedOutPage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             </StudentProtectedRoute>
           }
         />
+        <Route path="/kicked-out" element={<KickedOutPage />} />
         <Route
           path="/teacher-poll"
           element={
