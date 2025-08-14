@@ -72,7 +72,7 @@ npm install
 ```bash
 npm run dev
 ```
-This starts the API and Socket.IO server on `http://localhost:3000`.
+This starts the API and Socket.IO server on `https://studentteacherpoll.onrender.com`.
 
 ### Available REST endpoints
 - `POST /teacher-login` → returns `{ username: "teacher_xxxxx" }`
@@ -93,4 +93,4 @@ This starts the API and Socket.IO server on `http://localhost:3000`.
 
 ### Notes
 - Data is stored in-memory for simplicity and resets on server restart.
-- Frontend uses `VITE_API_BASE_URL` and defaults to `http://localhost:3000` during development.
+- Frontend uses `VITE_API_BASE_URL` and defaults to `https://studentteacherpoll.onrender.com` during development.

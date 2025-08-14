@@ -8,7 +8,7 @@ import chatIcon from "../../assets/chat.svg";
 let apiUrl =
   import.meta.env.VITE_NODE_ENV === "production"
     ? import.meta.env.VITE_API_BASE_URL
-    : "http://localhost:3000";
+    : "https://studentteacherpoll.onrender.com";
 const socket = io(apiUrl);
 
 const ChatPopover = () => {
